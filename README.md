@@ -1,2 +1,2 @@
 # angular-ngrx
-Angular ngrx - Plain and simple
+Angular: NGRX a clear Introduction
