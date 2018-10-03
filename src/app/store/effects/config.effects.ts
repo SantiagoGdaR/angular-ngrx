@@ -1,27 +1,25 @@
+
 import { Injectable } from '@angular/core';
+import { Effect, ofType, Actions } from '@ngrx/effects';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+import { IConfig } from '../../models/config.interface';
+import { ConfigService } from './../../services/config.service';
+import { EConfigActions, GetConfig, GetConfigSuccess } from '../actions/config.actions';
 
 @Injectable()
 export class ConfigEffects {
   @Effect()
-  getUser$ = this._actions$.pipe(
-    ofType<GetUser>(EUserActions.GetUsers),
-    map(action => action.payload),
-    withLatestFrom(this._store.pipe(select(state => state.users.users))),
-    switchMap(([id, users]) => {
-      const selectedUser = users.filter((user) => user.id === id)[0];
-      return of(new GetUserSuccess(selectedUser));
+  getConfig$ = this._actions$.pipe(
+    ofType<GetConfig>(EConfigActions.GetConfig),
+    switchMap(() => this._configService.getConfig()),
+    switchMap((config: IConfig) => {
+      return of(new GetConfigSuccess(config));
     })
   );
 
-  @Effect()
-  getUsers$ = this._actions$.pipe(
-    ofType(EUserActions.GetUsers),
-    switchMap(() => this._userService.getUsers()),
-    switchMap((mentors: IUser[]) => of(new GetUsersSuccess(mentors)))
-  );
-
   constructor(
-    private _userService: UserService,
-    private _actions$: Actions,
-    private _store: Store<IAppState>) {}
+    private _configService: ConfigService,
+    private _actions$: Actions) {}
 }
