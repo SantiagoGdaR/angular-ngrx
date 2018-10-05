@@ -9,7 +9,6 @@ export enum EConfigActions {
 
 export class GetConfig implements Action {
   public readonly type = EConfigActions.GetConfig;
-  constructor(public payload: IConfig) {}
 }
 
 export class GetConfigSuccess implements Action {

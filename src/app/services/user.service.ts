@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { IUser } from '../models/user.interface';
 import { IUserHttp } from '../models/http-models/user-http.interface';
 
 @Injectable()
