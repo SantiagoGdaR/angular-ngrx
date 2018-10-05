@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { IUser } from '../models/user.interface';
+import { IUserHttp } from '../models/http-models/user-http.interface';
 
 @Injectable()
 export class UserService {
@@ -11,7 +12,7 @@ export class UserService {
 
   constructor(private _http: HttpClient) { }
 
-  getUsers(): Observable<IUser[]> {
-    return this._http.get<IUser[]>(this.usersUrl);
+  getUsers(): Observable<IUserHttp> {
+    return this._http.get<IUserHttp>(this.usersUrl);
   }
 }

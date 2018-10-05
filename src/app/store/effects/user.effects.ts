@@ -5,15 +5,15 @@ import { of } from 'rxjs';
 import { switchMap, map, withLatestFrom } from 'rxjs/operators';
 
 import { IAppState } from '../state/app.state';
-import { IUser } from '../../models/user.interface';
 import { GetUsersSuccess, EUserActions, GetUserSuccess, GetUser, GetUsers } from '../actions/user.actions';
 import { UserService } from '../../services/user.service';
+import { IUserHttp } from '../../models/http-models/user-http.interface';
 
 @Injectable()
 export class UserEffects {
   @Effect()
   getUser$ = this._actions$.pipe(
-    ofType<GetUser>(EUserActions.GetUsers),
+    ofType<GetUser>(EUserActions.GetUser),
     map(action => action.payload),
     withLatestFrom(this._store.pipe(select(state => state.users.users))),
     switchMap(([id, users]) => {
@@ -26,7 +26,7 @@ export class UserEffects {
   getUsers$ = this._actions$.pipe(
     ofType<GetUsers>(EUserActions.GetUsers),
     switchMap(() => this._userService.getUsers()),
-    switchMap((mentors: IUser[]) => of(new GetUsersSuccess(mentors)))
+    switchMap((userHttp: IUserHttp) => of(new GetUsersSuccess(userHttp.users)))
   );
 
   constructor(
