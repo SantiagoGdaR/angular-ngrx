@@ -1,6 +1,4 @@
 {
   "adminName": "El Maestro Tabarez",
-  "permisions": [
-    "users"
-  ]
+  "permissions": ["users"]
 }

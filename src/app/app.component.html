@@ -1,7 +1,7 @@
 <nav class="navbar d-flex">
   <a class="navbar-brand"
-      routerLink="/">
-    Angular - NGRX
+    routerLink="/">
+    Angular - NGRX / {{ (config$ | async)?.adminName }}
   </a>
   <div class="d-flex justify-content-end">
     <ul class="d-flex navbar-nav flex-row align-items-center">

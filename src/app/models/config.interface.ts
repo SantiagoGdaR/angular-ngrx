@@ -1,4 +1,4 @@
 export interface IConfig {
-  loggedUserName: string;
-  permissions?: [];
+  adminName: string;
+  permissions?: string[];
 }
