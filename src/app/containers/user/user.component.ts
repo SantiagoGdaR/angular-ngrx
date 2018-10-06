@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
 
 import { IAppState } from '../../store/state/app.state';
 import { selectSelectedUser } from '../../store/selectors/user.selector';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { GetUser } from '../../store/actions/user.actions';
 
 @Component({
@@ -16,10 +16,10 @@ export class UserComponent implements OnInit {
 
   constructor(
     private _store: Store<IAppState>,
-    private _route: ActivatedRouteSnapshot
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this._store.dispatch(new GetUser(this._route.params.id));
+    this._store.dispatch(new GetUser(this._route.snapshot.params.id));
   }
 }

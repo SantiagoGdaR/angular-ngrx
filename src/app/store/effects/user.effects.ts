@@ -5,9 +5,16 @@ import { of } from 'rxjs';
 import { switchMap, map, withLatestFrom } from 'rxjs/operators';
 
 import { IAppState } from '../state/app.state';
-import { GetUsersSuccess, EUserActions, GetUserSuccess, GetUser, GetUsers } from '../actions/user.actions';
+import {
+  GetUsersSuccess,
+  EUserActions,
+  GetUserSuccess,
+  GetUser,
+  GetUsers
+} from '../actions/user.actions';
 import { UserService } from '../../services/user.service';
 import { IUserHttp } from '../../models/http-models/user-http.interface';
+import { selectUserList } from '../selectors/user.selector';
 
 @Injectable()
 export class UserEffects {
@@ -15,9 +22,9 @@ export class UserEffects {
   getUser$ = this._actions$.pipe(
     ofType<GetUser>(EUserActions.GetUser),
     map(action => action.payload),
-    withLatestFrom(this._store.pipe(select(state => state.users.users))),
+    withLatestFrom(this._store.pipe(select(selectUserList))),
     switchMap(([id, users]) => {
-      const selectedUser = users.filter((user) => user.id === id)[0];
+      const selectedUser = users.filter(user => user.id === +id)[0];
       return of(new GetUserSuccess(selectedUser));
     })
   );
@@ -32,5 +39,6 @@ export class UserEffects {
   constructor(
     private _userService: UserService,
     private _actions$: Actions,
-    private _store: Store<IAppState>) {}
+    private _store: Store<IAppState>
+  ) {}
 }
