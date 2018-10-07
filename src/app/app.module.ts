@@ -13,7 +13,7 @@ import { ConfigEffects } from './store/effects/config.effects';
 import { UserEffects } from './store/effects/user.effects';
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
-import { UsersComponent as UsersCotainerComponent } from './containers/users/users.component';
+import { UsersComponent as UsersContainerComponent } from './containers/users/users.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './containers/user/user.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
@@ -21,7 +21,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 @NgModule({
   declarations: [
     AppComponent,
-    UsersCotainerComponent,
+    UsersContainerComponent,
     UsersComponent,
     UserComponent,
     UserDetailsComponent
@@ -30,7 +30,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects, ConfigEffects] ),
+    EffectsModule.forRoot([UserEffects, ConfigEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule
@@ -38,4 +38,4 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
   providers: [UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

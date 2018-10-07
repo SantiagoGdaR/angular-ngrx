@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { IUser } from '../../models/user.interface';
 
+import { IUser } from '../../models/user.interface';
 
 export enum EUserActions {
   GetUsers = '[User] Get Users',
@@ -28,9 +28,4 @@ export class GetUserSuccess implements Action {
   constructor(public payload: IUser) {}
 }
 
-export type UserActions =
-  | GetUsers
-  | GetUsersSuccess
-  | GetUser
-  | GetUserSuccess;
-
+export type UserActions = GetUsers | GetUsersSuccess | GetUser | GetUserSuccess;
