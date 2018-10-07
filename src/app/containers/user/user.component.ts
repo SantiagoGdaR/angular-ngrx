@@ -7,7 +7,6 @@ import { selectSelectedUser } from '../../store/selectors/user.selector';
 import { GetUser } from '../../store/actions/user.actions';
 
 @Component({
-  selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
